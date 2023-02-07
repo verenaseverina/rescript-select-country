@@ -2,6 +2,5 @@
 
 @react.component
 let make = (~country: string) => {
-  Js.log(country)
   <span className=`fi fi-${country}`></span>
 }

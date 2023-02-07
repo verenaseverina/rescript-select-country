@@ -1,5 +1,5 @@
 type optionValue = {"value": string, "label": string}
-type onChange = (string) => unit
+type onChange = (optionValue) => unit
 type options = array<optionValue>
 
 @module("react-select") external components: {..} = "components"
@@ -15,12 +15,12 @@ module ReactSelectOption = {
 
 @react.component @module("react-select")
 external make: (
-  ~className: option<string>=?,
+  ~className: string=?,
   ~components: {
     "Option": ReactSelectOption.props => React.element
   }=?,
   ~onChange: onChange,
   ~options: options,
   ~placeholder: string=?,
-  ~value: option<string>=?
+  ~value: option<optionValue>=?
 ) => React.element = "default"

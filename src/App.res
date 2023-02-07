@@ -1,6 +1,10 @@
 @react.component
 let make = () => {
   <div>
-    {React.string("tefdsst")}
+    <CountrySelect
+      className=""
+      country=Some("us")
+      onChange=((val) => Js.log(val))
+    />
   </div>
 }
