@@ -14,7 +14,19 @@ var ReactSelectOption = {
   make: make
 };
 
+var controlComponent = ReactSelect.components.Control;
+
+function make$1(props) {
+  return React.createElement(React.Fragment, undefined, React.createElement(controlComponent, props));
+}
+
+var ReactSelectControl = {
+  controlComponent: controlComponent,
+  make: make$1
+};
+
 export {
   ReactSelectOption ,
+  ReactSelectControl ,
 }
 /* optionComponent Not a pure module */
