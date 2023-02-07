@@ -119,12 +119,10 @@ module CustomOption = {
 
 module CustomControl = {
   let make = (props: ReactSelect.ReactSelectControl.props) => {
-    <div className="customControl">
-      <ReactSelect.ReactSelectControl {...props}>
-        <DropdownIndicator />
-        {props.children}
-      </ReactSelect.ReactSelectControl>
-    </div>
+    <ReactSelect.ReactSelectControl {...props}>
+      <DropdownIndicator />
+      {props.children}
+    </ReactSelect.ReactSelectControl>
   }
 }
 
@@ -218,10 +216,15 @@ let make = (
       hideSelectedOptions=false
       isClearable=false
       menuIsOpen=true
-      onChange={val => {
+      onChange=(val => {
         onChange(val["value"])
         setIsOpen(_ => false)
-      }}
+      })
+      onKeyDown=(_event => {
+        if _event.key === "Escape" {
+          setIsOpen(_ => false)
+        }
+      })
       options
       placeholder
       styles=selectStyles

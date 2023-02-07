@@ -20,8 +20,10 @@ type colors = {
 type theme = {
   colors: colors
 }
+type keypressEvent = { which: int, key: string }
 type optionValue = {"value": string, "label": string}
-type onChange = (optionValue) => unit
+type onKeyDown = keypressEvent => unit
+type onChange = optionValue => unit
 type options = array<optionValue>
 type reactSelectStyle = {
   control: (ReactDOM.Style.t) => ReactDOM.Style.t,
@@ -41,13 +43,24 @@ module ReactSelectOption = {
   }
 }
 
+type innerProps = {
+  onMouseDown: () => unit,
+  onTouchEnd: () => unit,
+}
+
 module ReactSelectControl = {
   type props = {
     children: React.element,
     cx: () => unit,
     getClassNames: getStyleWithKey,
     getStyles: getStyleWithKey,
-    theme
+    theme,
+    isDisabled: bool,
+    isFocused: bool,
+    isMulti: bool,
+    isRtl: bool,
+    menuIsOpen: bool,
+    innerProps: innerProps,
   }
   let controlComponent: props => React.element = reactSelectComponent["Control"]
 
@@ -76,6 +89,7 @@ external make: (
   ~isClearable: bool=?,
   ~menuIsOpen: bool=?,
   ~onChange: onChange,
+  ~onKeyDown: onKeyDown=?,
   ~options: options,
   ~placeholder: string=?,
   ~styles: reactSelectStyle=?,
