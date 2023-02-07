@@ -119,10 +119,12 @@ module CustomOption = {
 
 module CustomControl = {
   let make = (props: ReactSelect.ReactSelectControl.props) => {
-    <ReactSelect.ReactSelectControl {...props}>
-      <DropdownIndicator />
-      {props.children}
-    </ReactSelect.ReactSelectControl>
+    <div className="customControl">
+      <ReactSelect.ReactSelectControl {...props}>
+        <DropdownIndicator />
+        {props.children}
+      </ReactSelect.ReactSelectControl>
+    </div>
   }
 }
 
